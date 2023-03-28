@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Swagger UI</title>
+  <link rel="stylesheet" type="text/css" href="swagger-ui.css">
+  <script type="text/javascript" src="swagger-ui-bundle.js"></script>
+  <script type="text/javascript" src="swagger-ui-standalone-preset.js"></script>
+  <style>
+    html {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    body {
+      margin: 0;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+<div id="swagger-ui"></div>
+<script>
+  window.onload = function () {
+    // Begin Swagger UI call region
+    const ui = SwaggerUIBundle({
+      url: "/v3/api-docs",
+      dom_id: '#swagger-ui',
+      deepLinking: true,
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+      ],
+      plugins: [
+        SwaggerUIBundle.plugins.DownloadUrl
+      ],
+      layout: "BaseLayout",
+      requestInterceptor: function (request) {
+        // Set authorization header if needed
+        return request;
+      },
+      docExpansion: "none",
+      operationsSorter: "alpha",
+      validatorUrl: null,
+      configs: {
+        spec: {
+          // Configure the base URL of your API
+          baseUrl: "http://localhost:8086"
+        }
+      }
+    })
+    // End Swagger UI call region
+
+    window.ui = ui
+  }
+</script>
+</body>
+</html>
+In this example, the configs.spec.baseUrl property is used to specify the base URL of the API. You can replace "http://localhost:8080" with the actual URL of your API.
+
+With this configuration, you can access the Swagger UI by opening the swagger-ui.html file in your web browser.
+
+
+
+
+
